@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>寵物健康知識網 | 專業的狗狗與貓咪健康指南</title>
+  <meta name="description" content="專業的寵物健康知識平台，提供狗狗與貓咪的健康保養、營養飲食、常見疾病預防與照護指南。">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --primary-dark: #388E3C;
+      --primary-light: #C8E6C9;
+      --secondary: #FF9800;
+      --accent: #2196F3;
+      --text-dark: #333333;
+      --text-light: #666666;
+      --background: #f8fdf9;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      background: var(--background);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M20,20 C40,0 60,0 80,20 C100,40 100,60 80,80 C60,100 40,100 20,80 C0,60 0,40 20,20 Z" fill="white"/></svg>');
+      background-size: 200px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo i {
+      font-size: 2.5rem;
+      margin-right: 15px;
+    }
+
+    .logo h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a i {
+      margin-right: 8px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 0.5rem 1rem;
+    }
+
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: white;
+      outline: none;
+      width: 180px;
+    }
+
+    .search-bar input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Main Content */
+    .main-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Articles */
+    .article-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .article-header {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .article-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .article-card:hover .article-image {
+      transform: scale(1.05);
+    }
+
+    .article-category {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--secondary);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .article-content {
+      padding: 1.5rem;
+    }
+
+    .article-content h2 {
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .article-content p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .read-more i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+
+    .read-more:hover {
+      color: var(--primary-dark);
+    }
+
+    .read-more:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Ad Slots */
+    .ad-slot {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      border: 2px dashed #d1d9e6;
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0;
+      transition: var(--transition);
+    }
+
+    .ad-slot:hover {
+      border-color: var(--accent);
+      transform: scale(1.01);
+    }
+
+    .ad-label {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .ad-content {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin: 1rem 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-widget {
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-widget:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-widget h3 {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-light);
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar-widget h3 i {
+      margin-right: 10px;
+    }
+
+    .popular-articles {
+      list-style: none;
+    }
+
+    .popular-articles li {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .popular-articles li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .popular-articles a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .popular-articles a i {
+      margin-right: 10px;
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+
+    .popular-articles a:hover {
+      color: var(--primary);
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .newsletter-form input {
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .newsletter-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      color: white;
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-column h4 {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-column h4::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-links a i {
+      margin-right: 8px;
+      font-size: 0.8rem;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    /* GitHub部署指南样式 */
+    .deploy-guide {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .deploy-guide h2 {
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .step {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+      border-left: 3px solid var(--primary);
+    }
+
+    .step-number {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .step h3 {
+      display: inline-block;
+      color: var(--text-dark);
+    }
+
+    .step-content {
+      margin-top: 1rem;
+      padding-left: 40px;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 5px;
+      margin: 1rem 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .main-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        position: static;
+      }
+      
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+      }
+      
+      .nav-links {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .search-bar {
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .search-bar input {
+        width: 100%;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .logo h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .article-card, .sidebar, .ad-slot {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .article-card:nth-child(2) { animation-delay: 0.1s; }
+    .article-card:nth-child(3) { animation-delay: 0.2s; }
+    .sidebar { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-paw"></i>
+          <h1>寵物健康知識網</h1>
+        </div>
+        <p class="tagline">專業的狗狗與貓咪健康指南，讓您的毛孩更健康快樂</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container nav-container">
+      <ul class="nav-links">
+        <li><a href="#"><i class="fas fa-dog"></i> 狗狗健康</a></li>
+        <li><a href="#"><i class="fas fa-cat"></i> 貓咪健康</a></li>
+        <li><a href="#"><i class="fas fa-utensils"></i> 營養飲食</a></li>
+        <li><a href="#"><i class="fas fa-stethoscope"></i> 疾病預防</a></li>
+        <li><a href="#"><i class="fas fa-question-circle"></i> 常見問題</a></li>
+      </ul>
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="搜尋文章...">
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="content">
+        <article class="article-card">
+          <div class="article-header">
+            <div class="article-category">狗狗護理</div>
+            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="狗狗掉毛" class="article-image">
+          </div>
+          <div class="article-content">
+            <h2>狗狗掉毛的原因與改善方法</h2>
+            <p>狗狗掉毛是常見問題，可能來自季節性換毛、營養不足、或皮膚疾病。如果掉毛異常伴隨皮膚紅癢，建議就醫檢查。日常可透過梳毛、均衡飲食與補充 Omega-3 脂肪酸改善。</p>
+            <a href="#" class="read-more">閱讀更多 <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <div class="ad-slot">
+          <span class="ad-label">廣告</span>
+          <i class="fas fa-ad" style="font-size: 2rem; color: #4CAF50; margin-bottom: 1rem;"></i>
+          <div class="ad-content">此處放置您的 AdSense 廣告</div>
+          <small>廣告內容由 Google 提供</small>
+        </div>
+
+        <article class="article-card">
+          <div class="article-header">
+            <div class="article-category">貓咪健康</div>
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="貓咪食慾" class="article-image">
+          </div>
+          <div class="article-content">
+            <h2>貓咪食慾不振怎麼辦？</h2>
+            <p>貓咪拒絕進食可能因為環境壓力、食物新鮮度或消化系統疾病。如果超過24小時不進食，可能導致脂肪肝等嚴重問題，務必及早就醫。平時確保食物多樣化與乾淨的飲水有助於維持食慾。</p>
+            <a href="#" class="read-more">閱讀更多 <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="article-card">
+          <div class="article-header">
+            <div class="article-category">營養指南</div>
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="寵物食材" class="article-image">
+          </div>
+          <div class="article-content">
+            <h2>對寵物有益的天然食材</h2>
+            <p>南瓜有助於改善消化，藍莓富含抗氧化物質，鮭魚提供 Omega-3。這些天然食材在專業建議下適量添加，可提升寵物的免疫力與皮毛健康。</p>
+            <a href="#" class="read-more">閱讀更多 <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- GitHub部署指南 -->
+        <div class="deploy-guide">
+          <h2><i class="fab fa-github"></i> GitHub Pages 部署指南</h2>
+          
+          <div class="step">
+            <span class="step-number">1</span>
+            <h3>創建GitHub倉庫</h3>
+            <div class="step-content">
+              <p>登錄GitHub，點擊右上角"+"號，選擇"New repository"。</p>
+              <div class="code-block">
+                Repository name: yourusername.github.io  (個人主頁)<br>
+                Description: 寵物健康知識網站 - 專業的寵物護理指南<br>
+                Public: ✓ 選擇公開<br>
+                Initialize with README: ✓ 勾選
+              </div>
+            </div>
+          </div>
+          
+          <div class="step">
+            <span class="step-number">2</span>
+            <h3>上傳網站文件</h3>
+            <div class="step-content">
+              <p>將此HTML文件命名為<strong>index.html</strong>並上傳到倉庫：</p>
+              <ul>
+                <li>點擊"Add file" → "Upload files"</li>
+                <li>拖拽index.html文件到上傳區域</li>
+                <li>填寫提交訊息，點擊"Commit changes"</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="step">
+            <span class="step-number">3</span>
+            <h3>啟用GitHub Pages</h3>
+            <div class="step-content">
+              <p>進入倉庫Settings → Pages：</p>
+              <ul>
+                <li>在"Source"部分選擇"Deploy from a branch"</li>
+                <li>選擇"main"分支和"/ (root)"文件夾</li>
+                <li>點擊"Save"，等待幾分鐘部署完成</li>
+              </ul>
+              <p>您的網站將發布在：<strong>https://yourusername.github.io</strong></p>
+            </div>
+          </div>
+          
+          <div class="step">
+            <span class="step-number">4</span>
+            <h3>添加AdSense代碼</h3>
+            <div class="step-content">
+              <p>將廣告位中的示例代碼替換為您的實際AdSense代碼：</p>
+              <div class="code-block">
+                &lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-你的發布商ID"&gt;&lt;/script&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-widget">
+          <h3><i class="fas fa-fire"></i> 熱門文章</h3>
+          <ul class="popular-articles">
+            <li><a href="#"><i class="fas fa-paw"></i> 狗狗常見皮膚病與治療方法</a></li>
+            <li><a href="#"><i class="fas fa-paw"></i> 貓咪跳蚤防治全攻略</a></li>
+            <li><a href="#"><i class="fas fa-paw"></i> 如何幫寵物選擇合適的營養補充品</a></li>
+            <li><a href="#"><i class="fas fa-paw"></i> 老年寵物照護指南</a></li>
+            <li><a href="#"><i class="fas fa-paw"></i> 寵物疫苗接種時間表</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3><i class="fas fa-bell"></i> 訂閱電子報</h3>
+          <p>獲取最新的寵物健康知識與照護技巧</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="您的電子郵件" required>
+            <button type="submit">訂閱</button>
+          </form>
+        </div>
+
+        <div class="ad-slot">
+          <span class="ad-label">廣告</span>
+          <i class="fas fa-ad" style="font-size: 1.5rem; color: #4CAF50; margin-bottom: 0.5rem;"></i>
+          <div class="ad-content">側邊廣告位</div>
+          <small>放置您的 AdSense 程式碼</small>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3><i class="fas fa-info-circle"></i> 關於部署</h3>
+          <p>此網站已優化為GitHub Pages兼容格式，只需上傳單一HTML文件即可運行。</p>
+          <p>如需自定義域名，可在倉庫設置中添加CNAME文件。</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>關於我們</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 網站簡介</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 編輯團隊</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 合作機會</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 隱私政策</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>寵物健康</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 狗狗健康</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 貓咪健康</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 營養飲食</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 疾病預防</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>資源中心</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 獸醫查找</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 急救指南</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 寵物保險</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 常見問題</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>聯繫我們</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 聯絡表單</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 客服專線</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> 電子郵件</a></li>
+          </ul>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-line"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>© 2025 寵物健康知識網 | 本站內容僅供參考，如有健康問題請諮詢專業獸醫</p>
+        <p>此網站使用GitHub Pages託管 | 設計與開發指南已包含在頁面中</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
