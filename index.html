@@ -656,64 +656,6 @@
           </div>
         </article>
 
-        <!-- GitHub部署指南 -->
-        <div class="deploy-guide">
-          <h2><i class="fab fa-github"></i> GitHub Pages 部署指南</h2>
-          
-          <div class="step">
-            <span class="step-number">1</span>
-            <h3>創建GitHub倉庫</h3>
-            <div class="step-content">
-              <p>登錄GitHub，點擊右上角"+"號，選擇"New repository"。</p>
-              <div class="code-block">
-                Repository name: yourusername.github.io  (個人主頁)<br>
-                Description: 寵物健康知識網站 - 專業的寵物護理指南<br>
-                Public: ✓ 選擇公開<br>
-                Initialize with README: ✓ 勾選
-              </div>
-            </div>
-          </div>
-          
-          <div class="step">
-            <span class="step-number">2</span>
-            <h3>上傳網站文件</h3>
-            <div class="step-content">
-              <p>將此HTML文件命名為<strong>index.html</strong>並上傳到倉庫：</p>
-              <ul>
-                <li>點擊"Add file" → "Upload files"</li>
-                <li>拖拽index.html文件到上傳區域</li>
-                <li>填寫提交訊息，點擊"Commit changes"</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="step">
-            <span class="step-number">3</span>
-            <h3>啟用GitHub Pages</h3>
-            <div class="step-content">
-              <p>進入倉庫Settings → Pages：</p>
-              <ul>
-                <li>在"Source"部分選擇"Deploy from a branch"</li>
-                <li>選擇"main"分支和"/ (root)"文件夾</li>
-                <li>點擊"Save"，等待幾分鐘部署完成</li>
-              </ul>
-              <p>您的網站將發布在：<strong>https://yourusername.github.io</strong></p>
-            </div>
-          </div>
-          
-          <div class="step">
-            <span class="step-number">4</span>
-            <h3>添加AdSense代碼</h3>
-            <div class="step-content">
-              <p>將廣告位中的示例代碼替換為您的實際AdSense代碼：</p>
-              <div class="code-block">
-                &lt;script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-你的發布商ID"&gt;&lt;/script&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <aside class="sidebar">
         <div class="sidebar-widget">
           <h3><i class="fas fa-fire"></i> 熱門文章</h3>
@@ -739,17 +681,9 @@
           <span class="ad-label">廣告</span>
           <i class="fas fa-ad" style="font-size: 1.5rem; color: #4CAF50; margin-bottom: 0.5rem;"></i>
           <div class="ad-content">側邊廣告位</div>
-          <small>放置您的 AdSense 程式碼</small>
+          <small><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3447101458649201"
+            crossorigin="anonymous"></script></small>
         </div>
-
-        <div class="sidebar-widget">
-          <h3><i class="fas fa-info-circle"></i> 關於部署</h3>
-          <p>此網站已優化為GitHub Pages兼容格式，只需上傳單一HTML文件即可運行。</p>
-          <p>如需自定義域名，可在倉庫設置中添加CNAME文件。</p>
-        </div>
-      </aside>
-    </div>
-  </div>
 
   <footer>
     <div class="container">
